@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A05120"
+    tools:context="manhinhdangky.manhinhdangky">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="364dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:text="Bằng cách đăng ký, bạn đồng ý với của chúng tôi và thừa nhận rằng bạn đã đọc Chính sách Quyền riêng tư để tìm hiểu cách chúng tôi thu thập, sử dụng và chia sẻ dữ liệu của bạn ."
+        android:textAlignment="center"
+        android:textColor="#FFDDBD"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Facebook"
+        android:layout_width="293dp"
+        android:layout_height="61dp"
+        android:backgroundTint="#FFDDBD"
+        android:gravity="center"
+        android:text="Tiếp tục với Facebook"
+        android:textAlignment="center"
+        android:textColor="#A05120"
+        app:icon="@drawable/facebook"
+        app:iconTint="#FF5A6978"
+        app:iconTintMode="src_in"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Google"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <Button
+        android:id="@+id/Google"
+        android:layout_width="293dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#FFDDBD"
+        android:gravity="center"
+        android:text="Tiếp tục với google"
+        android:textAlignment="center"
+        android:textColor="#A05120"
+        app:icon="@drawable/google"
+        app:iconTint="#FF5A6978"
+        app:iconTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="210dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="83dp"
+        android:gravity="center"
+        android:text="Đăng ký CakeYum"
+        android:textAlignment="center"
+        android:textColor="#FFDDBD"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="357dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="525dp"
+        android:gravity="center"
+        android:text="Tạo hồ sơ, theo dõi các tài khoản của thợ làm bánh chuyên nghiệp, thử tài làm bánh của bạn, v.v."
+        android:textAlignment="center"
+        android:textColor="#FFDDBD"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <ImageButton
+        android:id="@+id/Back"
+        android:layout_width="46dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:foregroundGravity="left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
+    <Button
+        android:id="@+id/Email"
+        android:layout_width="293dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="#FFDDBD"
+        android:gravity="center"
+        android:text="Đăng ký email"
+        android:textAlignment="center"
+        android:textColor="#A05120"
+        app:icon="@drawable/gmail"
+        app:iconTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "138153675616",
+    "project_id": "fir-df091",
+    "storage_bucket": "fir-df091.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138153675616:android:2ad23bde7633f364876c05",
+        "android_client_info": {
+          "package_name": "com.example.tess"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138153675616-eeil4rjn04d4didforbkirs2fvpl7ubr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJFnQXRtT9MEvUIf0vXphYo1yM2a-W8SM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138153675616-eeil4rjn04d4didforbkirs2fvpl7ubr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

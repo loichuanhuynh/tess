@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A05120"
+    tools:context="manhinhemail.manhinhemail">
+    <ImageView
+        android:id="@+id/imageViewemail"
+        android:layout_width="322dp"
+        android:layout_height="244dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ca" />
+    <EditText
+        android:id="@+id/taikhoanemail"
+        android:layout_width="331dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:hint="Email"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewemail"
+        app:layout_editor_absoluteX="46dp"
+        app:layout_editor_absoluteY="344dp"
+        tools:ignore="MissingConstraints" />
+    <EditText
+        android:id="@+id/matkhauemail"
+        android:layout_width="329dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:gravity="left"
+        android:hint="Password"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:orientation="vertical"
+        android:translationX="-100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taikhoanemail"
+        tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/dangkyemail"
+        android:layout_width="242dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="196dp"
+        android:backgroundTint="#FFDDBD"
+        android:text="Register"
+        android:textColor="#A05120"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matkhauemail"
+        app:layout_constraintVertical_bias="0.0" />
+    <ImageButton
+        android:id="@+id/Backemail"
+        android:layout_width="46dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:foregroundGravity="left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
