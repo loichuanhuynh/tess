@@ -27,14 +27,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Queue;
 
 import manhinhdangnhap.manhinhdangnhap;
 import manhinhtrangchu.manhnhtrangchu;
 import manhinhtrangchu.User;
+import manhinhtrangchu.Search;
 
-public class Post extends AppCompatActivity {
+public class Postsearch extends AppCompatActivity {
     public TextView post;
     public TextView Name;
     public Button button3;
@@ -48,13 +50,13 @@ public class Post extends AppCompatActivity {
     public ImageButton imageButton7;
     public int dem=0;
     public int l=0;
-    public String key=" ";
-
+    public String key="";
+    public String key1="";
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post);
+        setContentView(R.layout.activity_postsearch);
         Name =(TextView) findViewById(R.id.textView4);
         like =(TextView) findViewById(R.id.textView9);
         post =(TextView) findViewById(R.id.textView7);
@@ -68,59 +70,82 @@ public class Post extends AppCompatActivity {
         imageButton7=(ImageButton) findViewById(R.id.imageButton7);
         Intent pre = getIntent();
         String ID= pre.getStringExtra("ID");
-        String IDp=pre.getStringExtra("IDp");
+        String search=pre.getStringExtra("search");
         final int STT=pre.getIntExtra("STT",0);
-        int Sopost=pre.getIntExtra("Sopost",0);
+        final int Sopost=pre.getIntExtra("Sopost",0);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference();
         dem=0;
 
-        Ref.child("Post").child(ID).addChildEventListener(new ChildEventListener() {
+        Ref.child("Post").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Postclass A=snapshot.getValue(Postclass.class);
-                if (dem==STT){
-                    key=snapshot.getKey();
-                    post.setText(A.Hashtag+"\n");
-                    post.append("Title:\n");
-                    post.append(A.Title+"\n");
-                    post.append("Ingredients:\n");
-                    post.append(A.Ingredients+"\n");
-                    post.append("Instruction:\n");
-                    post.append(A.Instruction);
-                    D();
-                    Ref.child("Post").child(ID).child(key).child("like").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                            String te=snapshot.getValue(String.class);
-                            l+=1;
-                            like.setText(String.valueOf(l));
+                Ref.child("Post").child(snapshot.getKey()).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot snapshot1, @Nullable String previousChildName) {
+                        Postclass A=snapshot1.getValue(Postclass.class);
+                        if (dem==STT & (A.Hashtag.contains(search)|A.Title.contains(search))) {
+                            key = snapshot1.getKey();
+                            key1=snapshot.getKey();
+                            post.setText(A.Hashtag + "\n");
+                            post.append("Title:\n");
+                            post.append(A.Title + "\n");
+                            post.append("Ingredients:\n");
+                            post.append(A.Ingredients + "\n");
+                            post.append("Instruction:\n");
+                            post.append(A.Instruction + "\n" + key1 + "\n" + key);
+                            D();
+                            Ref.child("Post").child(key1).child(key).child("like").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    String te = snapshot.getValue(String.class);
+                                    l += 1;
+                                    like.setText(String.valueOf(l));
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
+                    }
 
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        }
+                    }
 
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-                        }
+                    }
 
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
-                }
-                else{
-                    D();
-                }
+                    }
+                });
             }
 
             @Override
@@ -143,7 +168,8 @@ public class Post extends AppCompatActivity {
 
             }
         });
-        Ref.child("User").child(ID).addChildEventListener(new ChildEventListener() {
+
+        Ref.child("User").child(key1).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 User us=snapshot.getValue(User.class);
@@ -174,16 +200,15 @@ public class Post extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Z = new Intent(Post.this, manhnhtrangchu.class);
-                Z.putExtra("ID",IDp);
-                Z.putExtra("STT",0);
+                Intent Z = new Intent(Postsearch.this, Search.class);
+                Z.putExtra("ID",ID);
                 startActivity(Z);
             }
         });
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Ref.child("Post").child(ID).child(key).child("like").push().setValue(IDp);
+                Ref.child("Post").child(key1).child(key).child("like").push().setValue(ID);
 
             }
 
@@ -191,12 +216,12 @@ public class Post extends AppCompatActivity {
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Z = new Intent(Post.this, Comment.class);
+                Intent Z = new Intent(Postsearch.this, CommentPostsearch.class);
                 Z.putExtra("STT",STT);
+                Z.putExtra("search",search);
+                Z.putExtra("ID",key1);
+                Z.putExtra("IDp",ID);
                 Z.putExtra("key",key);
-                Z.putExtra("ID",ID);
-                Z.putExtra("IDp",IDp);
-                Z.putExtra("Sopost",Sopost);
                 startActivity(Z);
             }
 
@@ -212,14 +237,14 @@ public class Post extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (STT==Sopost-1){
-                    Toast.makeText(Post.this, "Phía sau không còn post nào", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Postsearch.this, "Phía sau không còn post nào", Toast.LENGTH_LONG).show();
 
                 }
                 else {
-                    Intent Z = new Intent(Post.this, Post.class);
+                    Intent Z = new Intent(Postsearch.this, Postsearch.class);
                     Z.putExtra("ID", ID);
-                    Z.putExtra("IDp",IDp);
                     Z.putExtra("STT", STT + 1);
+                    Z.putExtra("search",search);
                     Z.putExtra("Sopost",Sopost);
                     startActivity(Z);
                 }
@@ -230,13 +255,13 @@ public class Post extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (STT==0){
-                    Toast.makeText(Post.this, "Trước đó không còn post nào", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Postsearch.this, "Trước đó không còn post nào", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Intent Z = new Intent(Post.this, Post.class);
+                    Intent Z = new Intent(Postsearch.this, Postsearch.class);
                     Z.putExtra("ID", ID);
-                    Z.putExtra("IDp",IDp);
                     Z.putExtra("STT", STT - 1);
+                    Z.putExtra("search",search);
                     Z.putExtra("Sopost",Sopost);
                     startActivity(Z);
                 }

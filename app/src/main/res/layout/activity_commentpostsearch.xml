@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="CreatePost.Comment">
+    tools:context="CreatePost.CommentPostsearch">
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -22,8 +22,8 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
         android:layout_marginTop="33dp"
         android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/imageButton4"

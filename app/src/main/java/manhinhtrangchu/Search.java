@@ -1,4 +1,4 @@
-package CreatePost;
+package manhinhtrangchu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,70 +32,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-import manhinhdangnhap.manhinhdangnhap;
-import manhinhtrangchu.manhnhtrangchu;
 import manhinhtrangchu.User;
+import CreatePost.Postsearch;
+import CreatePost.Postclass;
 
-public class Comment extends AppCompatActivity {
+public class Search extends AppCompatActivity {
     public TextView Name;
     public Button button3;
-    public EditText comment;
-    public ListView lv;
+    public EditText search;
     public ImageButton imageButton;
-    ArrayList<String> cm;
-    ArrayAdapter adapter=null;
+    int Sopost=1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
+        setContentView(R.layout.activity_search);
         Name =(TextView) findViewById(R.id.textView17);
         button3=(Button) findViewById(R.id.button13);
         imageButton=(ImageButton) findViewById(R.id.imageButton4);
-        lv =(ListView) findViewById(R.id.lv);
-        comment=(EditText) findViewById(R.id.editText);
+        search=(EditText) findViewById(R.id.editText);
         Intent pre = getIntent();
-
         String ID= pre.getStringExtra("ID");
-        String IDp=pre.getStringExtra("IDp");
-        int Sopost=pre.getIntExtra("Sopost",0);
-        final int STT=pre.getIntExtra("STT",0);
-        String key=pre.getStringExtra("key");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference();
 
-        cm=new ArrayList<String>();
-        adapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,cm);
-        lv.setAdapter(adapter);
 
-        Ref.child("Post").child(ID).child(key).child("comment").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String temp=snapshot.getValue().toString();
-                cm.add(temp);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        Ref.child("User").child(IDp).addChildEventListener(new ChildEventListener() {
+        Ref.child("User").child(ID).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 User us=snapshot.getValue(User.class);
@@ -127,25 +88,31 @@ public class Comment extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String c=comment.getText().toString();
-                String d=Name.getText().toString();
-                Ref.child("Post").child(ID).child(key).child("comment").push().setValue(d+":"+c);
+                if (Sopost==0){
+                    Toast.makeText(Search.this, "Không tìm được post", Toast.LENGTH_LONG).show();
+
+                }
+                else {
+                    String Hashtag = search.getText().toString();
+                    Intent Z = new Intent(Search.this, Postsearch.class);
+                    Z.putExtra("ID", ID);
+                    Z.putExtra("search", Hashtag);
+                    Z.putExtra("STT", 0);
+                    Z.putExtra("Sopost", Sopost);
+                    startActivity(Z);
+                }
             }
         });
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Z = new Intent(Comment.this, Post.class);
+                Intent Z = new Intent(Search.this, manhnhtrangchu.class);
                 Z.putExtra("ID",ID);
-                Z.putExtra("IDp",IDp);
-                Z.putExtra("STT",STT);
-                Z.putExtra("Sopost",Sopost);
+                Z.putExtra("STT",0);
                 startActivity(Z);
-
             }
 
         });
 
     }
-
 }

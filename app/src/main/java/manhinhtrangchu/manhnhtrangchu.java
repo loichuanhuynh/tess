@@ -28,6 +28,7 @@ public class manhnhtrangchu extends AppCompatActivity {
     public Button button;
     public Button button2;
     public Button button3;
+    public Button button4;
     public TextView Name;
     public TextView Date;
     public TextView Phone;
@@ -51,6 +52,7 @@ public class manhnhtrangchu extends AppCompatActivity {
         button=(Button) findViewById(R.id.button9);
         button2=(Button) findViewById(R.id.button10) ;
         button3=(Button) findViewById(R.id.button11) ;
+        button4=(Button) findViewById(R.id.button15) ;
         Name=(TextView) findViewById(R.id.textView10);
         Date=(TextView) findViewById(R.id.textView11);
         Phone=(TextView) findViewById(R.id.textView12);
@@ -202,6 +204,14 @@ public class manhnhtrangchu extends AppCompatActivity {
                 startActivity(Z);
             }
         });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Z = new Intent(manhnhtrangchu.this, Search.class);
+                Z.putExtra("ID",ID);
+                startActivity(Z);
+            }
+        });
         button2.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -215,6 +225,7 @@ public class manhnhtrangchu extends AppCompatActivity {
                     Z.putExtra("ID", ID);
                     Z.putExtra("STT", 0);
                     Z.putExtra("Sopost", p);
+                    Z.putExtra("IDp",ID);
                     startActivity(Z);
                 }
             }

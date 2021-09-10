@@ -36,18 +36,18 @@ import manhinhdangnhap.manhinhdangnhap;
 import manhinhtrangchu.manhnhtrangchu;
 import manhinhtrangchu.User;
 
-public class Comment extends AppCompatActivity {
+public class CommentPostsearch extends AppCompatActivity {
     public TextView Name;
     public Button button3;
     public EditText comment;
-    public ListView lv;
+    ListView lv;
     public ImageButton imageButton;
     ArrayList<String> cm;
     ArrayAdapter adapter=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
+        setContentView(R.layout.activity_commentpostsearch);
         Name =(TextView) findViewById(R.id.textView17);
         button3=(Button) findViewById(R.id.button13);
         imageButton=(ImageButton) findViewById(R.id.imageButton4);
@@ -57,6 +57,7 @@ public class Comment extends AppCompatActivity {
 
         String ID= pre.getStringExtra("ID");
         String IDp=pre.getStringExtra("IDp");
+        String search=pre.getStringExtra("search");
         int Sopost=pre.getIntExtra("Sopost",0);
         final int STT=pre.getIntExtra("STT",0);
         String key=pre.getStringExtra("key");
@@ -135,10 +136,10 @@ public class Comment extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Z = new Intent(Comment.this, Post.class);
-                Z.putExtra("ID",ID);
-                Z.putExtra("IDp",IDp);
+                Intent Z = new Intent(CommentPostsearch.this, Postsearch.class);
+                Z.putExtra("ID",IDp);
                 Z.putExtra("STT",STT);
+                Z.putExtra("search",search);
                 Z.putExtra("Sopost",Sopost);
                 startActivity(Z);
 
