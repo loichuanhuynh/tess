@@ -22,6 +22,7 @@ import CreatePost.CreatePost;
 import CreatePost.Ingredients;
 import CreatePost.Postclass;
 import CreatePost.Post;
+import manhinhdangnhap.manhinhdangnhap;
 
 public class manhnhtrangchu extends AppCompatActivity {
     public Button button;
@@ -41,10 +42,12 @@ public class manhnhtrangchu extends AppCompatActivity {
     public float r=0;
     public int dem=1;
     public User user;
+    public ImageButton imageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manhnhtrangchu);
+        imageButton=(ImageButton) findViewById(R.id.imageButton4);
         button=(Button) findViewById(R.id.button9);
         button2=(Button) findViewById(R.id.button10) ;
         button3=(Button) findViewById(R.id.button11) ;
@@ -57,6 +60,7 @@ public class manhnhtrangchu extends AppCompatActivity {
         post1=(TextView) findViewById(R.id.textView13);
         like1=(TextView) findViewById(R.id.textView14);
         rate1=(TextView) findViewById(R.id.textView15);
+
         Intent pre=getIntent();
         String ID=pre.getStringExtra("ID");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -180,6 +184,13 @@ public class manhnhtrangchu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent Z = new Intent(manhnhtrangchu.this, CreatePost.class);
                 Z.putExtra("ID",ID);
+                startActivity(Z);
+            }
+        });
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Z = new Intent(manhnhtrangchu.this, manhinhdangnhap.class);
                 startActivity(Z);
             }
         });

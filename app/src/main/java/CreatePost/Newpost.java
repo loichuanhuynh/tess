@@ -37,9 +37,10 @@ public class Newpost extends AppCompatActivity {
         String ing=pre.getStringExtra("ing");
         String instruc=pre.getStringExtra("instruc");
         String ID=pre.getStringExtra("ID");
-        post.setText("Title: \n"+title+"\n"+"Ingredients:\n"+ing+"\n"+"Instruction:\n"+instruc);
-        if (title==null | ing==null | instruc==null) {
-            Toast.makeText(Newpost.this, "Lỗi, do bạn không làm đủ 3 bược, mời làm lại từ đầu", Toast.LENGTH_LONG).show();
+        String Hashtag=pre.getStringExtra("Hashtag");
+        post.setText(Hashtag+"\n"+"Title: \n"+title+"\n"+"Ingredients:\n"+ing+"\n"+"Instruction:\n"+instruc);
+        if (title==null | ing==null | instruc==null | Hashtag==null| !check(Hashtag)) {
+            Toast.makeText(Newpost.this, "Lỗi, do bạn không làm đủ các bước, mời làm lại từ đầu", Toast.LENGTH_LONG).show();
 
             button7.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,6 +67,7 @@ public class Newpost extends AppCompatActivity {
                     Z.putExtra("ing",ing);
                     Z.putExtra("ID",ID);
                     Z.putExtra("title",title);
+                    Z.putExtra("Hashtag",Hashtag);
                     startActivity(Z);
                 }
             });
@@ -75,7 +77,7 @@ public class Newpost extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference Ref = database.getReference().child("Post").child(ID);
                     //ArrayList<String> like=new ArrayList<String>();
-                    Postclass A = new Postclass(title, ing, instruc);
+                    Postclass A = new Postclass(title, ing, instruc,Hashtag);
                     Ref.push().setValue(A);
                     Toast.makeText(Newpost.this, "Đã đăng", Toast.LENGTH_LONG).show();
                     Intent Z = new Intent(Newpost.this, manhnhtrangchu.class);
@@ -86,5 +88,7 @@ public class Newpost extends AppCompatActivity {
         }
 
     }
-
+    public boolean check(String a){
+        return a.contains("#");
+    }
 }

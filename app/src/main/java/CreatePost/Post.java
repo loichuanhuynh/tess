@@ -80,7 +80,8 @@ public class Post extends AppCompatActivity {
                 Postclass A=snapshot.getValue(Postclass.class);
                 if (dem==STT){
                     key=snapshot.getKey();
-                    post.setText("Title:\n");
+                    post.setText(A.Hashtag+"\n");
+                    post.append("Title:\n");
                     post.append(A.Title+"\n");
                     post.append("Ingredients:\n");
                     post.append(A.Ingredients+"\n");

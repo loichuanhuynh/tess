@@ -40,7 +40,7 @@ public class Comment extends AppCompatActivity {
     public TextView Name;
     public Button button3;
     public EditText comment;
-    public ListView lv;
+    ListView lv;
     public ImageButton imageButton;
     ArrayList<String> cm;
     ArrayAdapter adapter=null;

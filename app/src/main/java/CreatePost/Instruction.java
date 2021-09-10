@@ -31,6 +31,7 @@ public class Instruction extends AppCompatActivity {
         String title=pre.getStringExtra("title");
         String ing=pre.getStringExtra("ing");
         String ID=pre.getStringExtra("ID");
+        String Hashtag=pre.getStringExtra("Hashtag");
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +39,7 @@ public class Instruction extends AppCompatActivity {
                 Intent Z = new Intent(Instruction.this, Ingredients.class);
                 Z.putExtra("ID",ID);
                 Z.putExtra("title",title);
+                Z.putExtra("Hashtag",Hashtag);
                 startActivity(Z);
             }
         });
@@ -52,6 +54,7 @@ public class Instruction extends AppCompatActivity {
                 Z.putExtra("ing",ing);
                 Z.putExtra("instruc",instruc);
                 Z.putExtra("ID",ID);
+                Z.putExtra("Hashtag",Hashtag);
                 startActivity(Z);
             }
         });

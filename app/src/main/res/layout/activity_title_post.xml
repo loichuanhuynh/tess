@@ -8,6 +8,23 @@
 
 
     <EditText
+        android:id="@+id/hashtag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:gravity="left"
+        android:hint="#Hashtag"
+        android:orientation="vertical"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title_post"
+        app:layout_editor_absoluteX="46dp"
+        app:layout_editor_absoluteY="344dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
         android:id="@+id/Title_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

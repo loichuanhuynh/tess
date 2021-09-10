@@ -31,6 +31,7 @@ public class Ingredients extends AppCompatActivity {
         Intent pre=getIntent();
         String title=pre.getStringExtra("title");
         String ID=pre.getStringExtra("ID");
+        String Hashtag=pre.getStringExtra("Hashtag");
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +50,7 @@ public class Ingredients extends AppCompatActivity {
                 Z.putExtra("title",title);
                 Z.putExtra("ing",ing);
                 Z.putExtra("ID",ID);
+                Z.putExtra("Hashtag",Hashtag);
                 startActivity(Z);
             }
         });
