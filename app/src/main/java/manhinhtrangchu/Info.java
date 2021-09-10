@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.os.Bundle;
+import com.google.firebase.auth.AuthResult;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.view.View;
@@ -43,7 +45,8 @@ public class Info extends AppCompatActivity {
     public EditText Name;
     public EditText Date;
     public EditText Phone;
-    public EditText newpass;
+    public EditText newpass,oldpass;
+    private FirebaseAuth Mauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +57,11 @@ public class Info extends AppCompatActivity {
         Date=(EditText) findViewById(R.id.editTextDate);
         Phone=(EditText) findViewById(R.id.editText2);
         newpass=(EditText) findViewById(R.id.editText3);
+        oldpass=(EditText) findViewById(R.id.editText4);
         imageButton=(ImageButton) findViewById(R.id.imageButton4);
         text=(TextView) findViewById(R.id.textView17);
         text.setText("Change Info");
+        Mauth = FirebaseAuth.getInstance();
         Intent pre=getIntent();
         String ID=pre.getStringExtra("ID");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -118,15 +123,39 @@ public class Info extends AppCompatActivity {
         }));
     }
     private void ClickPassword() {
-        String strNewpassword = newpass.getText().toString().trim();
-        //progressDialog.show();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        user.updatePassword(strNewpassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+        String strOldpassword=oldpass.getText().toString().trim();
+        String strNewpassword= newpass.getText().toString().trim();
+        if (TextUtils.isEmpty(strOldpassword)) {
+            Toast.makeText(Info.this, "Vui lòng nhập mật khẩu cũ !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(strNewpassword)) {
+            Toast.makeText(Info.this, "Vui lòng nhập mật khẩu mới !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        FirebaseUser user =FirebaseAuth.getInstance().getCurrentUser();
+        Mauth.signInWithEmailAndPassword(user.getEmail(), strOldpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(Info.this, "Thay đổi mật khẩu thành công !", Toast.LENGTH_SHORT).show();
-                    //progressDialog.dismiss();
+            public void onComplete(@NonNull @NotNull Task<AuthResult> task12) {
+                if (task12.isSuccessful()) {
+                    user.updatePassword(strNewpassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        public void onComplete(@NonNull @NotNull Task<Void> task2) {
+                            if(task2.isSuccessful())
+                            {
+                                Toast.makeText(Info.this, "Thay đổi mật khẩu thành công !", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(Info.this, "Thay đổi mật khẩu không thành công !", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(Info.this, "mật khẩu cũ không đúng !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Info.this, strOldpassword, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Info.this, user.getEmail(), Toast.LENGTH_SHORT).show();
+
+                    //        progressDialog.dismiss();
                 }
             }
         });

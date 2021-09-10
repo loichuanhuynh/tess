@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tess">
+    package="com.example.tess" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,15 +10,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Tess">
-        <activity android:name="manhinhemail.manhinhemail"></activity>
-        <activity android:name="CreatePost.CreatePost"></activity>
-        <activity android:name="CreatePost.Ingredients"></activity>
-        <activity android:name="CreatePost.Instruction"></activity>
-        <activity android:name="CreatePost.Newpost"></activity>
-        <activity android:name="CreatePost.Post"></activity>
-        <activity android:name="CreatePost.Comment"></activity>
-        <activity android:name="manhinhtrangchu.Info"></activity>
+        android:theme="@style/Theme.Tess" >
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Tess.NoActionBar" />
+        <activity android:name="manhinhemail.manhinhemail" />
+        <activity android:name="CreatePost.CreatePost" />
+        <activity android:name="CreatePost.Ingredients" />
+        <activity android:name="CreatePost.Instruction" />
+        <activity android:name="CreatePost.Newpost" />
+        <activity android:name="CreatePost.Post" />
+        <activity android:name="CreatePost.Comment" />
+        <activity android:name="manhinhtrangchu.Info" />
         <activity android:name="manhinhfacebook.manhinhfacebook" />
         <activity android:name="manhinhgoogle.manhinhgoogle" />
         <activity android:name="manhinhdangky.manhinhdangky" />
@@ -27,7 +32,7 @@
         <activity
             android:name=".ui.login.manhinhdangnhap"
             android:label="@string/title_activity_manhinhdangnhap" />
-        <activity android:name="manhinhcho.manhinhcho">
+        <activity android:name="manhinhcho.manhinhcho" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +50,7 @@
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -66,7 +71,7 @@
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
