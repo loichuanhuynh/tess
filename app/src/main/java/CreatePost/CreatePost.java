@@ -38,7 +38,9 @@ public class CreatePost extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(CreatePost.this,"Thoát tạo post, trở về trang chủ",Toast.LENGTH_LONG).show();
                 Intent Z = new Intent(CreatePost.this, manhnhtrangchu.class);
+                Z.putExtra("ID",ID);
                 startActivity(Z);
             }
         });

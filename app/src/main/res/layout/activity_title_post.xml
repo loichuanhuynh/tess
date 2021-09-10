@@ -59,14 +59,14 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="192dp"
-        android:layout_marginRight="192dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
         android:layout_marginBottom="44dp"
         android:gravity="center"
         android:text="Create new post"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/Title_post"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

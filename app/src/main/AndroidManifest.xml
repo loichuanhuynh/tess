@@ -17,7 +17,8 @@
         <activity android:name="CreatePost.Instruction"></activity>
         <activity android:name="CreatePost.Newpost"></activity>
         <activity android:name="CreatePost.Post"></activity>
-        <activity android:name="CreatePost.Post"></activity>
+        <activity android:name="CreatePost.Comment"></activity>
+        <activity android:name="manhinhtrangchu.Info"></activity>
         <activity android:name="manhinhfacebook.manhinhfacebook" />
         <activity android:name="manhinhgoogle.manhinhgoogle" />
         <activity android:name="manhinhdangky.manhinhdangky" />

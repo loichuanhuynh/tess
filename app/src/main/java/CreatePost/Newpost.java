@@ -15,6 +15,7 @@ import com.example.tess.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,30 +37,53 @@ public class Newpost extends AppCompatActivity {
         String ing=pre.getStringExtra("ing");
         String instruc=pre.getStringExtra("instruc");
         String ID=pre.getStringExtra("ID");
-
-
         post.setText("Title: \n"+title+"\n"+"Ingredients:\n"+ing+"\n"+"Instruction:\n"+instruc);
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Z = new Intent(Newpost.this, Instruction.class);
-                startActivity(Z);
-            }
-        });
-        button8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference Ref = database.getReference().child("Post").child(ID);
-                Postclass A=new Postclass(title,ing,instruc);
-                Ref.push().setValue(A);
-                Toast.makeText(Newpost.this,"Đã đăng",Toast.LENGTH_LONG).show();
-                Intent Z = new Intent(Newpost.this, manhnhtrangchu.class);
-                Z.putExtra("ID",ID);
-                startActivity(Z);
-            }
-        });
+        if (title==null | ing==null | instruc==null) {
+            Toast.makeText(Newpost.this, "Lỗi, do bạn không làm đủ 3 bược, mời làm lại từ đầu", Toast.LENGTH_LONG).show();
 
+            button7.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent Z = new Intent(Newpost.this, CreatePost.class);
+                    Z.putExtra("ID",ID);
+                    startActivity(Z);
+                }
+            });
+            button8.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(Newpost.this, "Lỗi, do bạn không làm đủ 3 bược, mời nhấn trở về để làm lại từ đầu", Toast.LENGTH_LONG).show();
+
+                }
+            });
+        }
+        else {
+            button7.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(Newpost.this, "Trở về trang Istruction, bạn cần nhập lại Instruction", Toast.LENGTH_LONG).show();
+                    Intent Z = new Intent(Newpost.this, CreatePost.class);
+                    Z.putExtra("ing",ing);
+                    Z.putExtra("ID",ID);
+                    Z.putExtra("title",title);
+                    startActivity(Z);
+                }
+            });
+            button8.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference Ref = database.getReference().child("Post").child(ID);
+                    //ArrayList<String> like=new ArrayList<String>();
+                    Postclass A = new Postclass(title, ing, instruc);
+                    Ref.push().setValue(A);
+                    Toast.makeText(Newpost.this, "Đã đăng", Toast.LENGTH_LONG).show();
+                    Intent Z = new Intent(Newpost.this, manhnhtrangchu.class);
+                    Z.putExtra("ID", ID);
+                    startActivity(Z);
+                }
+            });
+        }
 
     }
 

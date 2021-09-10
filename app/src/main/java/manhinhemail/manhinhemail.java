@@ -44,9 +44,6 @@ public class manhinhemail extends AppCompatActivity {
         matkhau=(EditText)findViewById(R.id.matkhauemail);
         register=(Button)findViewById(R.id.dangkyemail);
         Back= (ImageButton) findViewById(R.id.Backemail);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, World!");
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +55,7 @@ public class manhinhemail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Register();
+
             }
         });
     }
@@ -79,10 +77,16 @@ public class manhinhemail extends AppCompatActivity {
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(manhinhemail.this, "Đăng ký thành công !", Toast.LENGTH_SHORT).show();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference Ref = database.getReference().child("User").child(email.substring(0,email.length()-10));
+                    Ref.child("Name").setValue(email.substring(0,email.length()-10));
+                    Ref.child("Date").setValue("01/01/2000");
+                    Ref.child("Phone").setValue("0123456789");
                     Intent Z = new Intent(manhinhemail.this, manhnhtrangchu.class);
+                    Z.putExtra("ID",email.substring(0,email.length()-10));
                     startActivity(Z);
                 } else {
-                    Toast.makeText(manhinhemail.this, "Tài khoản trùng, vui lòng nhập lại tài khoản !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(manhinhemail.this, "Tài khoản trùng hoặc không hợp lệ, vui lòng nhập lại tài khoản !", Toast.LENGTH_SHORT).show();
                 }
             }
         });

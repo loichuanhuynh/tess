@@ -27,10 +27,17 @@ public class Instruction extends AppCompatActivity {
         ins =(EditText) findViewById(R.id.instruction);
         button5=(Button) findViewById(R.id.button5);
         button6=(Button) findViewById(R.id.button6);
+        Intent pre=getIntent();
+        String title=pre.getStringExtra("title");
+        String ing=pre.getStringExtra("ing");
+        String ID=pre.getStringExtra("ID");
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(Instruction.this,"Trở về trang Ingredients, nhập lại từ bước Ingredients",Toast.LENGTH_LONG).show();
                 Intent Z = new Intent(Instruction.this, Ingredients.class);
+                Z.putExtra("ID",ID);
+                Z.putExtra("title",title);
                 startActivity(Z);
             }
         });
@@ -39,10 +46,7 @@ public class Instruction extends AppCompatActivity {
             public void onClick(View v) {
                 instruc=ins.getText().toString();
                 Toast.makeText(Instruction.this,"Đã xong Instruction",Toast.LENGTH_LONG).show();
-                Intent pre=getIntent();
-                String title=pre.getStringExtra("title");
-                String ing=pre.getStringExtra("ing");
-                String ID=pre.getStringExtra("ID");
+
                 Intent Z = new Intent(Instruction.this, Newpost.class);
                 Z.putExtra("title",title);
                 Z.putExtra("ing",ing);

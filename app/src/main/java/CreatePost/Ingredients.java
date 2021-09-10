@@ -28,10 +28,15 @@ public class Ingredients extends AppCompatActivity {
         ingredients=(EditText) findViewById(R.id.ingredients);
         button3=(Button) findViewById(R.id.button3);
         button4=(Button) findViewById(R.id.button4);
+        Intent pre=getIntent();
+        String title=pre.getStringExtra("title");
+        String ID=pre.getStringExtra("ID");
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(Ingredients.this,"Trở về trang Title post",Toast.LENGTH_LONG).show();
                 Intent Z = new Intent(Ingredients.this, CreatePost.class);
+                Z.putExtra("ID",ID);
                 startActivity(Z);
             }
         });
@@ -40,9 +45,6 @@ public class Ingredients extends AppCompatActivity {
             public void onClick(View v) {
                 ing=ingredients.getText().toString();
                 Toast.makeText(Ingredients.this,"Đã xong Ingredients",Toast.LENGTH_LONG).show();
-                Intent pre=getIntent();
-                String title=pre.getStringExtra("title");
-                String ID=pre.getStringExtra("ID");
                 Intent Z = new Intent(Ingredients.this, Instruction.class);
                 Z.putExtra("title",title);
                 Z.putExtra("ing",ing);
