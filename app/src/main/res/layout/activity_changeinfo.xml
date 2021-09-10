@@ -16,6 +16,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Old password"
+        android:inputType="textPassword"
         android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button10" />
@@ -101,6 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
+        android:inputType="textPassword"
         android:ems="10"
         android:hint="New password"
         android:textColorHint="@color/black"

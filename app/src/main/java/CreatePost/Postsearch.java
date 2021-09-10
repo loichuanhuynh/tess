@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,10 +49,12 @@ public class Postsearch extends AppCompatActivity {
     public TextView text2;
     public ImageButton imageButton5;
     public ImageButton imageButton7;
+    public ImageButton imageButton8;
     public int dem=0;
     public int l=0;
     public String key="";
     public String key1="";
+    public RatingBar ratingBar;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +66,13 @@ public class Postsearch extends AppCompatActivity {
         text =(TextView) findViewById(R.id.textView16);
         text2 =(TextView) findViewById(R.id.textView19);
         button3=(Button) findViewById(R.id.button3);
+        ratingBar=(RatingBar) findViewById(R.id.ratingBar);
         imageButton=(ImageButton) findViewById(R.id.imageButton);
         imageButton2=(ImageButton) findViewById(R.id.imageButton2);
         imageButton3=(ImageButton) findViewById(R.id.imageButton3);
         imageButton5=(ImageButton) findViewById(R.id.imageButton5);
         imageButton7=(ImageButton) findViewById(R.id.imageButton7);
+        imageButton8=(ImageButton) findViewById(R.id.imageButton8);
         Intent pre = getIntent();
         String ID= pre.getStringExtra("ID");
         String search=pre.getStringExtra("search");
@@ -93,7 +98,7 @@ public class Postsearch extends AppCompatActivity {
                             post.append("Ingredients:\n");
                             post.append(A.Ingredients + "\n");
                             post.append("Instruction:\n");
-                            post.append(A.Instruction + "\n" + key1 + "\n" + key);
+                            post.append(A.Instruction);
                             D();
                             Ref.child("User").child(key1).addChildEventListener(new ChildEventListener() {
                                 @Override
@@ -230,14 +235,15 @@ public class Postsearch extends AppCompatActivity {
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                float p=ratingBar.getRating();
+                Ref.child("Post").child(key1).child(key).child("rate").push().setValue(String.valueOf(p));
             }
 
         });
         imageButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (STT==Sopost-1){
+                if (STT==Sopost-1 | STT>Sopost-1){
                     Toast.makeText(Postsearch.this, "Phía sau không còn post nào", Toast.LENGTH_LONG).show();
 
                 }
@@ -266,6 +272,15 @@ public class Postsearch extends AppCompatActivity {
                     Z.putExtra("Sopost",Sopost);
                     startActivity(Z);
                 }
+            }
+
+        });
+        imageButton8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Ref.child("Report").push().setValue(key1+" | "+key);
+                Toast.makeText(Postsearch.this, "Đã gửi yêu cầu của bạn tới quản trị viên", Toast.LENGTH_LONG).show();
+
             }
 
         });

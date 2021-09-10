@@ -32,16 +32,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+import CreatePost.Postclass;
 import manhinhtrangchu.User;
 import CreatePost.Postsearch;
-import CreatePost.Postclass;
+import CreatePost.Load;
 
 public class Search extends AppCompatActivity {
     public TextView Name;
     public Button button3;
     public EditText search;
     public ImageButton imageButton;
-    int Sopost=1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +54,7 @@ public class Search extends AppCompatActivity {
         String ID= pre.getStringExtra("ID");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference();
+
 
 
         Ref.child("User").child(ID).addChildEventListener(new ChildEventListener() {
@@ -88,19 +89,12 @@ public class Search extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Sopost==0){
-                    Toast.makeText(Search.this, "Không tìm được post", Toast.LENGTH_LONG).show();
+                String Hashtag = search.getText().toString();
+                Intent Z = new Intent(Search.this, Load.class);
+                Z.putExtra("ID", ID);
+                Z.putExtra("search", Hashtag);
+                startActivity(Z);
 
-                }
-                else {
-                    String Hashtag = search.getText().toString();
-                    Intent Z = new Intent(Search.this, Postsearch.class);
-                    Z.putExtra("ID", ID);
-                    Z.putExtra("search", Hashtag);
-                    Z.putExtra("STT", 0);
-                    Z.putExtra("Sopost", Sopost);
-                    startActivity(Z);
-                }
             }
         });
         imageButton.setOnClickListener(new View.OnClickListener() {

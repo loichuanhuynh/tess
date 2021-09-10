@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
@@ -46,10 +47,11 @@ public class Post extends AppCompatActivity {
     public TextView text2;
     public ImageButton imageButton5;
     public ImageButton imageButton7;
+    public ImageButton imageButton6;
     public int dem=0;
     public int l=0;
     public String key=" ";
-
+    public RatingBar ratingBar;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +63,13 @@ public class Post extends AppCompatActivity {
         text =(TextView) findViewById(R.id.textView16);
         text2 =(TextView) findViewById(R.id.textView19);
         button3=(Button) findViewById(R.id.button3);
+        ratingBar=(RatingBar) findViewById(R.id.ratingBar2);
         imageButton=(ImageButton) findViewById(R.id.imageButton);
         imageButton2=(ImageButton) findViewById(R.id.imageButton2);
         imageButton3=(ImageButton) findViewById(R.id.imageButton3);
         imageButton5=(ImageButton) findViewById(R.id.imageButton5);
         imageButton7=(ImageButton) findViewById(R.id.imageButton7);
+        imageButton6=(ImageButton) findViewById(R.id.imageButton6);
         Intent pre = getIntent();
         String ID= pre.getStringExtra("ID");
         String IDp=pre.getStringExtra("IDp");
@@ -204,7 +208,8 @@ public class Post extends AppCompatActivity {
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                float a=ratingBar.getRating();
+                Ref.child("Post").child(ID).child(key).child("rate").push().setValue(String.valueOf(a));
             }
 
         });
@@ -240,6 +245,14 @@ public class Post extends AppCompatActivity {
                     Z.putExtra("Sopost",Sopost);
                     startActivity(Z);
                 }
+            }
+
+        });
+        imageButton6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Ref.child("Report").push().setValue(ID+" | "+key);
+                Toast.makeText(Post.this, "Đã gửi yêu cầu của bạn tới quản trị viên", Toast.LENGTH_LONG).show();
             }
 
         });

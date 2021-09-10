@@ -23,6 +23,7 @@
         <activity android:name="CreatePost.Newpost" />
         <activity android:name="CreatePost.Post" />
         <activity android:name="CreatePost.Comment" />
+        <activity android:name="CreatePost.Load" />
         <activity android:name="manhinhtrangchu.Info" />
         <activity android:name="CreatePost.Postsearch" />
         <activity android:name="CreatePost.CommentPostsearch" />

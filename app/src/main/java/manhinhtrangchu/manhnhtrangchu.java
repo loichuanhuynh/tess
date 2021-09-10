@@ -135,7 +135,7 @@ public class manhnhtrangchu extends AppCompatActivity {
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                         String ra=snapshot.getValue(String.class);
                         r+=Float.valueOf(ra);
-                        like.setText(String.valueOf(r/dem));
+                        rate.setText(String.valueOf(r/dem));
                         dem+=1;
                     }
 
