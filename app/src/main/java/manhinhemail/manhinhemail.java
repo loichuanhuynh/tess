@@ -28,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import manhinhdangky.manhinhdangky;
 import manhinhdangnhap.manhinhdangnhap;
 import manhinhtrangchu.manhnhtrangchu;
+import manhinhtrangchu.User;
 
 public class manhinhemail extends AppCompatActivity {
     private EditText taikhoan;
@@ -79,9 +80,11 @@ public class manhinhemail extends AppCompatActivity {
                     Toast.makeText(manhinhemail.this, "Đăng ký thành công !", Toast.LENGTH_SHORT).show();
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference Ref = database.getReference().child("User").child(email.substring(0,email.length()-10));
-                    Ref.child("Name").setValue(email.substring(0,email.length()-10));
-                    Ref.child("Date").setValue("01/01/2000");
-                    Ref.child("Phone").setValue("0123456789");
+                    User us=new User();
+                    us.Name=email.substring(0,email.length()-10);
+                    us.Date="01/01/2000";
+                    us.Phone="0123456789";
+                    Ref.push().setValue(us);
                     Intent Z = new Intent(manhinhemail.this, manhnhtrangchu.class);
                     Z.putExtra("ID",email.substring(0,email.length()-10));
                     startActivity(Z);
