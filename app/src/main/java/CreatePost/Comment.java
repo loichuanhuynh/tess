@@ -54,6 +54,7 @@ public class Comment extends AppCompatActivity {
         lv =(ListView) findViewById(R.id.lv);
         comment=(EditText) findViewById(R.id.editText);
         Intent pre = getIntent();
+
         String ID= pre.getStringExtra("ID");
         final int STT=pre.getIntExtra("STT",0);
         String key=pre.getStringExtra("key");
