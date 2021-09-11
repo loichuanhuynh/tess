@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A05120"
     tools:context="CreatePost.CommentPostsearch">
 
     <ImageButton
@@ -13,7 +14,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="16dp"
-        android:background="@color/white"
+        android:background="#A05120"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
@@ -26,6 +27,7 @@
         android:layout_marginLeft="13dp"
         android:layout_marginTop="33dp"
         android:text="Name"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/imageButton4"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,6 +59,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Comment"
+        android:backgroundTint="#FFDDBD"
+        android:textColor="#A05120"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

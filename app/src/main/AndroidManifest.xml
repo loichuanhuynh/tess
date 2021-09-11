@@ -28,6 +28,7 @@
         <activity android:name="CreatePost.Postsearch" />
         <activity android:name="CreatePost.CommentPostsearch" />
         <activity android:name="manhinhtrangchu.Search" />
+        <activity android:name="manhinhtrangchu.Changeimage"/>
         <activity android:name="manhinhfacebook.manhinhfacebook" />
         <activity android:name="manhinhgoogle.manhinhgoogle" />
         <activity android:name="manhinhdangky.manhinhdangky" />

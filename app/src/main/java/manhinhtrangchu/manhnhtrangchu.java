@@ -4,20 +4,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tess.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import CreatePost.CreatePost;
 import CreatePost.Ingredients;
 import CreatePost.Postclass;
@@ -43,7 +56,11 @@ public class manhnhtrangchu extends AppCompatActivity {
     public float r=0;
     public int dem=1;
     public User user;
+    Uri imageUri;
     public ImageButton imageButton;
+    public ImageView imageView;
+    StorageReference storageReference;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +79,8 @@ public class manhnhtrangchu extends AppCompatActivity {
         post1=(TextView) findViewById(R.id.textView13);
         like1=(TextView) findViewById(R.id.textView14);
         rate1=(TextView) findViewById(R.id.textView15);
-
+        imageView=(ImageView) findViewById(R.id.imageView3);
+        DowloadImage();
         Intent pre=getIntent();
         String ID=pre.getStringExtra("ID");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -230,5 +248,26 @@ public class manhnhtrangchu extends AppCompatActivity {
                 }
             }
         }));
+    }
+    private void DowloadImage() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String fileName = user.getEmail();
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference photoReference= storageReference.child("Image_User/"+fileName);//fileName là tên gmail nha
+        final long ONE_MEGABYTE = 1024 * 1024;
+        photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                imageView.setImageBitmap(bmp);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 }

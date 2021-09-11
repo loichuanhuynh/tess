@@ -40,6 +40,7 @@ import CreatePost.Post;
 public class Info extends AppCompatActivity {
     public Button button10;
     public Button button14;
+    public Button button16;
     public TextView text;
     public ImageButton imageButton;
     public EditText Name;
@@ -53,6 +54,7 @@ public class Info extends AppCompatActivity {
         setContentView(R.layout.activity_changeinfo);
         button10=(Button) findViewById(R.id.button10);
         button14=(Button) findViewById(R.id.button14);
+        button16=(Button) findViewById(R.id.button16);
         Name=(EditText) findViewById(R.id.editText);
         Date=(EditText) findViewById(R.id.editTextDate);
         Phone=(EditText) findViewById(R.id.editText2);
@@ -110,6 +112,14 @@ public class Info extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ClickPassword();
+            }
+        });
+        button16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Z=new Intent(Info.this,Changeimage.class);
+                Z.putExtra("ID",ID);
+                startActivity(Z);
             }
         });
         imageButton.setOnClickListener((new View.OnClickListener() {

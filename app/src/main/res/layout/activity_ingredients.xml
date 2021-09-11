@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A05120"
     tools:context="CreatePost.Ingredients">
 
 
@@ -29,10 +30,12 @@
         android:layout_width="176dp"
         android:layout_height="36dp"
         android:layout_marginBottom="4dp"
+        android:background="#A05120"
         android:backgroundTint="@color/white"
         android:drawableRight="@drawable/back2"
         android:text="Continue"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
+        app:backgroundTint="#A05120"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -47,10 +50,12 @@
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="32dp"
+        android:background="#A05120"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/back"
         android:gravity="left"
         android:textColor="@color/black"
+        app:backgroundTint="#A05120"
         app:layout_constraintBottom_toTopOf="@+id/ingredients"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,7 +69,7 @@
         android:layout_marginBottom="44dp"
         android:gravity="center"
         android:text="Back Input Title post"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/ingredients"
         app:layout_constraintStart_toEndOf="@+id/button3" />
 
